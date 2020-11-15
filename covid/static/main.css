@@ -93,9 +93,29 @@ body{
   font-size: 48px;
 }
 
+.hov-btn:hover{
+  background: white;
+  transition: 0.4s;
+  outline: none;
+}
+
+.hov-btn{
+  width: 80%;
+  margin-bottom: 15px;
+}
+
+.nav-link:hover{
+  color:black !important;
+  transition: 0.4s;
+}
+
 @media (min-width: 576px) {
 .f-fit{
   font-size: 48px;
+}
+.hov-btn{
+  width: 130px;
+  margin-bottom: 0px;
 }
 }
 
@@ -103,16 +123,28 @@ body{
 .f-fit{
   font-size: 3vw;
 }
+.hov-btn{
+  width: 130px;
+  margin-bottom: 0px;
+}
 }
 
 @media (min-width: 992px) {
 .f-fit{
   font-size: 3vw;
 }
+.hov-btn{
+  width: 130px;
+  margin-bottom: 0px;
+}
 }
 
 @media (min-width: 1200px) {
 .f-fit{
   font-size: 3vw;
+}
+.hov-btn{
+  width: 130px;
+  margin-bottom: 0px;
 }
 }

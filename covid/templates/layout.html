@@ -31,9 +31,12 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('index') }}">Dashboard</a>
+            <ul class="navbar-nav ml-auto mr-5">
+              <li class="nav-item mr-5 border hov-btn">
+                <a class="nav-link text-center" href="{{ url_for('index') }}">Dashboard</a>
+              </li>    
+              <li class="nav-item border hov-btn">
+                <a class="nav-link text-center" href="{{ url_for('country') }}">Country</a>
               </li>              
             </ul>            
           </div>

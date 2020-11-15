@@ -5,13 +5,13 @@
           <div class="col-12 col-md-4 col-lg-4">
             <div class="world-img mx-auto text-center text-muted pt-4" >
                 <img src="{{ url_for('static',filename='world.png') }}" alt="" style="width:250px;height:250px;opacity:0.7">
-                <p class="title-font text-muted mt-3" style="font-size:50px;font-weight:bold">Worldwide</p>
+                <p class="title-font mt-3" style="font-size:50px;font-weight:bold;opacity:0.7;color:black">Worldwide</p>
             </div>
           </div>
 
           <div class="col-12 col-md-8 col-lg-8">
             <div class="row">
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12 mb-5">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-8 mb-5">
                 <div class="population-dashboard w-100 mr-auto text-center border">
                   <p class="case text-left pl-3">World Population</p>
                   <p class="f-fit num population text-left pl-3" style="margin-top:-25px">  
@@ -19,6 +19,16 @@
                   </p>
                 </div>
               </div>
+
+              <div class="col-12 col-sm-12 col-md-12 col-lg-4 mb-5">
+              <div class="active-dashboard w-100 mx-auto text-center border">
+                <p class="case">Active Cases</p>
+                <p class="f-fit num active" style="margin-top:-25px">
+                  {{ data.active }}
+                </p>
+              </div>
+            </div>     
+
               <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-5">
                 <div class="total-dashboard w-100 mx-auto text-center border">
                   <p class="case">Total Cases</p>
@@ -46,7 +56,10 @@
           </div>
         </div>
       </div>
-<div class="container p-0">
+
+      <hr style="width:50%;color:black">
+
+      <div class="container p-0">
           <p class="brand-font pt-4 pb-1" style="border-bottom:1px solid #cccccc">Today <span style="float:right"><img src="{{ url_for('static',filename='live.gif')}}" alt="" style="width:65px;height:40px"></span></p>
           <div class="row pt-2">            
             <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-5">
@@ -87,5 +100,6 @@
           </div>
           <div class="time mb-5">
             <small class="text-muted">Updated at {{ data.updated }} .</small>
-          </div>      
+          </div>
+      </div>     
 {% endblock result %}
