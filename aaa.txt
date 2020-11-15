@@ -1,17 +1,4 @@
-{% extends 'layout.html' %}
-{% block result %}
-    <div class="content search container">
-      <form action="" method="POST">
-        <div class="input-group mb-3 mr-auto" style="width:380px">
-          <input type="text" class="form-control" placeholder="Country Name" name='city'>
-          <div class="input-group-append">
-            <button class="btn btn-outline-green btn-outline-dark" type="submit">Search</button>
-          </div>
-        </div>     
-      </form>
-    </div>
-  {% if data.result != 0 %}
-      <div class="container p-0">
+<div class="container p-0">
           <p class="mb-4">
             <img src="{{ data.svg }}" alt="" style="width:50px;height:34px" class="">
             <span style="font-size:30px;margin-left:10px;margin-top:-5px;position:absolute;display:inline-block">
@@ -162,14 +149,96 @@
               </div>
             </div>
           </div>
-      </div>
-  {% else %}
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 mb-5">
-        <div class="not-found w-100 mx-auto text-center p-4">
-            <p class="case">404 | Not found</p>
-            <p style="border:1px solid black;width:140px;margin-top:-15px;" class="mx-auto"></p>
-            <small class="text-muted" style="font-size:24px;">No result for this query!</small>
+      </div>  
+
+
+
+
+      <div class="worldwide content"  style="border:none">
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-4">
+            <div class="world-img mx-auto text-center text-muted pt-4" >
+                <img src="{{ url_for('static',filename='world.png') }}" alt="" style="width:250px;height:250px;opacity:0.7">
+                <p class="title-font text-muted mt-3" style="font-size:50px;font-weight:bold">Worldwide</p>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-8 col-lg-8">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 mb-5">
+                <div class="population-dashboard w-100 mr-auto text-center border">
+                  <p class="case text-left pl-3">World Population</p>
+                  <p class="f-fit num population text-left pl-3" style="margin-top:-25px">  
+                    {{ "{:,}".format(7794798739) }}
+                  </p>
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-5">
+                <div class="total-dashboard w-100 mx-auto text-center border">
+                  <p class="case">Total Cases</p>
+                  <p class="f-fit num total" style="margin-top:-25px"> 
+                    {{ data.total_case }}               
+                  </p>
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-5">
+                <div class="recover-dashboard w-100 mx-auto text-center border">
+                  <p class="case">Total Recover</p>
+                  <p class="f-fit num recover" style="margin-top:-25px">     
+                    {{ data.total_recover }}      
+                  </p>
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-5">
+                <div class="death-dashboard w-100 mx-auto text-center border">
+                  <p class="case">Total Deaths</p>
+                  <p class="f-fit num death" style="margin-top:-25px">    {{ data.total_death }}               
+                  </p>
+                </div>
+              </div>
+            </div>      
+          </div>
         </div>
       </div>
-  {% endif %}
-{% endblock result %}
+<div class="container p-0">
+          <p class="brand-font pt-4 pb-1" style="border-bottom:1px solid #cccccc">Today <span style="float:right"><img src="{{ url_for('static',filename='live.gif')}}" alt="" style="width:65px;height:40px"></span></p>
+          <div class="row pt-2">            
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-5">
+              <div class="new-dashboard w-100 mx-auto text-center border">
+                <p class="case" style="">New Cases</p>
+                <p class="num new" style="margin-top:-25px">
+                  {{ data.new_case }}
+                </p>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-5">
+              <div class="death-dashboard w-100 mx-auto text-center border">
+                <p class="case">Deaths</p>
+                <p class="num death" style="margin-top:-25px">              {{ data.new_death }}
+                </p>
+              </div>
+            </div>
+            
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-5">
+              <div class="critical-dashboard w-100 mx-auto text-center border">
+                <p class="case">Critical Cases</p>
+                <p class="num critical" style="margin-top:-25px">
+                  {{ data.critical }}
+                </p>
+              </div>
+            </div>     
+
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-5">
+              <div class="recover-dashboard w-100 mx-auto text-center border">
+                <p class="case">Recovered Cases</p>
+                <p class="num recover" style="margin-top:-25px">
+                  {{ data.new_recover }}
+                </p>
+              </div>
+            </div>              
+
+          </div>
+          <div class="time">
+            <small class="text-muted">Updated at {{ data.updated }} .</small>
+          </div>      

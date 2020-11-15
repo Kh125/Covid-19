@@ -33,22 +33,13 @@
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                <a class="nav-link" href="{{ url_for('index') }}">Dashboard</a>
               </li>              
             </ul>            
           </div>
         </nav>
 
-        <div class="content search container">
-          <form action="" method="POST">
-            <div class="input-group mb-3 mr-auto" style="width:380px">
-              <input type="text" class="form-control" placeholder="Country Name" name='city'>
-              <div class="input-group-append">
-                <button class="btn btn-outline-green btn-outline-dark" type="submit">Search</button>
-              </div>
-            </div>     
-          </form>
-        </div>
+        
 
         {% block result %}
         {% endblock result %}

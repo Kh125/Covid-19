@@ -3,7 +3,7 @@ body{
   border: none;
   font-family: 'Saira', sans-serif;
   font-size: 20px;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 .brand-font{
@@ -59,25 +59,60 @@ body{
   color:#66cdaa;
 }
 
-.new-dashboard,.death-dashboard,.recover-dashboard,.total-dashboard{
+.critical{
+  color:#789704;
+}
+
+.population{
+  color:#a9f2e5;
+}
+
+.new-dashboard,.death-dashboard,.recover-dashboard,.total-dashboard,.active-dashboard,.critical-dashboard,.population-dashboard{
   cursor: pointer;
   padding: 15px;
 }
 
+.li-p{
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
 
+.li-box{
+  width:480px;
+  
+}
+
+.li-box li{
+  width:50%;
+}
+
+.f-fit{
+  font-size: 48px;
+}
 
 @media (min-width: 576px) {
-
+.f-fit{
+  font-size: 48px;
+}
 }
 
 @media (min-width: 768px) {
-
+.f-fit{
+  font-size: 3vw;
+}
 }
 
 @media (min-width: 992px) {
-
+.f-fit{
+  font-size: 3vw;
+}
 }
 
 @media (min-width: 1200px) {
-
+.f-fit{
+  font-size: 3vw;
+}
 }
