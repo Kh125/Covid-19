@@ -108,12 +108,12 @@
               <div class="critical-dashboard w-100 mx-auto text-center border">
                 <p class="case">Critical Cases</p>
                 <p class="num critical" style="margin-top:-25px">
-                  {% if data.active == None %}
+                  {% if data.critical == None %}
                   {{ 0 }}
-                  {% elif data.active >= 1000%}
-                  {{ "{:,}".format(data.active) }}
+                  {% elif data.critical >= 1000%}
+                  {{ "{:,}".format(data.critical) }}
                   {% else %}                
-                  {{ data.active }}
+                  {{ data.critical }}
                   {% endif %}
                 </p>
               </div>

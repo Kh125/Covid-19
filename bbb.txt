@@ -17,11 +17,11 @@ headers_world = {
       'x-rapidapi-host': "worldometers.p.rapidapi.com"
       }
 
-url_all = "https://worldometers.p.rapidapi.com/api/coronavirus/all/"
+url_all = "https://covid-19-tracking.p.rapidapi.com/v1"
 
 headers_all = {
     'x-rapidapi-key':  os.getenv('x-rapidapi-key'),
-    'x-rapidapi-host': "worldometers.p.rapidapi.com"
+    'x-rapidapi-host': "covid-19-tracking.p.rapidapi.com"
     }
 
 
@@ -78,6 +78,7 @@ def index():
 
   response = requests.request("GET", url_world, headers=headers_world)
   req = response.json()  
+  print(req)
   world = {
     'active':req['data']['Active Cases'],
     'critical':req['data']['Critical'],
@@ -93,27 +94,82 @@ def index():
   return render_template('dashboard.html', data = world)
 
 
-@app.route('/country-list')
+@app.route('/data-list')
 def data_list():
-
+  
   response = requests.request("GET", url_all, headers=headers_all)
   req = response.json()
   test = []
   country = []
-  for rr in range(len(req['data'])):
+  for rr in range(len(req)-1):
     country = [
-      req['data'][rr]['Country'],
-      req['data'][rr]['Active Cases'],
-      req['data'][rr]['Critical'],
-      req['data'][rr]['New Cases'],
-      req['data'][rr]['New Deaths'],
-      req['data'][rr]['New Recovered'],
-      req['data'][rr]['Total Cases'],
-      req['data'][rr]['Total Deaths'],
-      req['data'][rr]['Total Recovered'],
-      req['data'][rr]['Total Tests'],
-      req['data'][rr]['Region'],
+      req[rr]['Country_text'],
+      req[rr]['Active Cases_text'],
+      req[rr]['New Cases_text'],
+      req[rr]['New Deaths_text'],
+      req[rr]['Total Cases_text'],
+      req[rr]['Total Deaths_text'],
+      req[rr]['Total Recovered_text'],
     ]
     test.append(country)
+  return render_template('country_data.html',test = test)
 
-  return render_template('country_data.html',test = test,updated_time = req['last_update'])
+
+
+
+
+
+
+
+
+  {% extends 'layout.html' %}
+{% block style %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bulma.min.css">  
+{% endblock style %}
+{% block result %}        
+  <div class="table-data container table-container">  
+    <table id="example" class="table is-bordered" width="100%">
+      <thead>
+            <tr>
+                <th>Country</th>
+                <th>Active</th>                
+                <th>New Case</th>
+                <th>Death</th>
+                <th>Total Case</th>
+                <th>Total Death</th>
+                <th>Total Recover</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for stest in test%}
+            <tr>
+                <td>{{ stest[0] }}</td>
+                <td>{{ stest[1] }}</td>
+                <td>{{ stest[2] }}</td>
+                <td>{{ stest[3] }}</td>
+                <td>{{ stest[4] }}</td>
+                <td>{{ stest[5] }}</td>
+                <td>{{ stest[6] }}</td>               
+            </tr>
+          {% endfor %}
+        </tbody>       
+    </table>
+    </table>
+  </div>
+{% endblock result %}  
+{% block script %}
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bulma.min.js"></script>
+
+    
+    <script>
+      $(document).ready(function() {
+          $('#example').DataTable( {
+              "scrollX": true,    
+              "lengthMenu": [ 5, 10, 25, 50, 75, 100 ]  
+          } );
+      } );
+    </script>
+{% endblock script %}
