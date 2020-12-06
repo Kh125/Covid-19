@@ -4,10 +4,10 @@ import requests
 import os
 import csv
 
-urll = "https://covid-193.p.rapidapi.com/"
+urll = "https://worldometers.p.rapidapi.com/api/coronavirus/country/"
 headers = {
       'x-rapidapi-key': os.getenv('x-rapidapi-key'),
-      'x-rapidapi-host': "covid-193.p.rapidapi.com"
+      'x-rapidapi-host': "worldometers.p.rapidapi.com"
       }
 
 url_world = "https://worldometers.p.rapidapi.com/api/coronavirus/world"
@@ -27,39 +27,37 @@ headers_all = {
 
 @app.route('/country',methods=['GET','POST'])
 def country():
-  url = urll+'statistics'
-  country = "Myanmar"
+  country = "myanmar"
   if request.method == 'POST':
     if request.form.get('city').lower() == 'south-korea':
       country = 's-korea'
     else:
-      country = request.form.get('city')
-  querystring = {"country":country}
-  response = requests.request("GET", url, headers=headers, params=querystring)
+      country = request.form.get('city').lower()
+  url = urll+country 
+  response = requests.request("GET", url, headers=headers)
   req = response.json()
   # print(req)
 
-  if req['results'] != 0:
+  if 'data' in req:
     country_data = {
-      'country':req['response'][0]['country'],
-      'continent':req['response'][0]['continent'],
-      'population':req['response'][0]['population'],
-      'new_cases':req['response'][0]['cases']['new'],
-      'active':req['response'][0]['cases']['active'],
-      'critical':req['response'][0]['cases']['critical'],
-      'recover':req['response'][0]['cases']['recovered'],
-      'total':req['response'][0]['cases']['total'],
-      'death_today':req['response'][0]['deaths']['new'],
-      'death_total':req['response'][0]['deaths']['total'],
-      'total_test':req['response'][0]['tests']['total'],
-      'day':req['response'][0]['day'],
-      'time':req['response'][0]['time'],
-      'result':req['results']
+      'country':req['data']['Country'],
+      'population':req['data']['Population'],
+      'new_cases':req['data']['New Cases'],
+      'active':req['data']['Active Cases'],
+      'critical':req['data']['Critical'],
+      'recover':req['data']['Total Recovered'],
+      'recover_today':req['data']['New Recovered'],
+      'total':req['data']['Total Cases'],
+      'death_today':req['data']['New Deaths'],
+      'death_total':req['data']['Total Deaths'],
+      'total_test':req['data']['Total Tests'],
+      'time':req['last_update'],
+      'result':'200'
     }
   else:
     country_data = {
-      'country':req['parameters']['country'],
-      'result':req['results']
+      'country':country,
+      'result':'404'
     }
 
   # print(country_data)
@@ -75,7 +73,6 @@ def country():
 @app.route('/dashboard',methods=['GET','POST'])
 @app.route('/',methods=['GET','POST'])
 def index():  
-
   response = requests.request("GET", url_world, headers=headers_world)
   req = response.json()  
   world = {
@@ -95,7 +92,6 @@ def index():
 
 @app.route('/country-list')
 def data_list():
-
   response = requests.request("GET", url_all, headers=headers_all)
   req = response.json()
   test = []

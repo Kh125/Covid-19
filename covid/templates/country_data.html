@@ -127,6 +127,9 @@
   <div class="mx-auto container">
   <small class="text-muted text-center">Updated at {{ updated_time }}.</small>
   </div>
+  <div class="mx-auto container">
+      <a class="btn btn-dark" href="{{ url_for('country') }}" style="float:right">Overall Info</a>   
+  </div>
 {% endblock result %}  
 {% block script %}
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

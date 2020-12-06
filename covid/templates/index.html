@@ -9,10 +9,10 @@
           </div>
         </div>     
       </form>      
-      <small class="text-muted" style="font-size:17px;">Use '-' character between two words. Eg.South-Korea</small><br>
+      <small class="text-muted" style="font-size:17px;">Use no space between two words. Eg.'SouthAfrica' except 'S.Korea'</small><br>
       <small class="text-muted" style="font-size:17px;">Using lower or upper is okay!</small>
     </div>
-  {% if data.result != 0 %}
+  {% if data.result == '200' %}
       <div class="container p-0">
           <p class="mb-4">
             <img src="{{ data.svg }}" alt="" style="width:50px;height:34px" class="">
@@ -25,7 +25,7 @@
               <tr>
                 <th scope="col">Population</th>
                 <th scope="col">
-                  {{ "{:,}".format(data.population) }}
+                  {{ data.population }}
                 </th>                 
               </tr>              
             </thead>              
@@ -33,10 +33,10 @@
           <p class="brand-font pt-4 pb-1" style="border-bottom:1px solid #cccccc">Today <span style="float:right"><img src="{{ url_for('static',filename='live.gif')}}" alt="" style="width:65px;height:40px"></span></p>
           <div class="row pt-2">            
             <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-5">
-              <div class="new-dashboard w-100 mx-auto text-center border">
+              <div class="new-dashboard dd-bx w-100 mx-auto text-center border">
                 <p class="case" style="">New Cases</p>
                 <p class="num new" style="margin-top:-25px">
-                  {% if data.new_cases == None %}
+                  {% if data.new_cases == '' %}
                   {{ 0 }}
                   {% else %}
                   {{data.new_cases}}
@@ -46,10 +46,10 @@
             </div>
 
             <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-5">
-              <div class="death-dashboard w-100 mx-auto text-center border">
+              <div class="death-dashboard dd-bx w-100 mx-auto text-center border">
                 <p class="case">Deaths</p>
                 <p class="num death" style="margin-top:-25px">                  
-                  {% if data.death_today == None %}
+                  {% if data.death_today == '' %}
                   {{ 0 }}
                   {% else %}
                   {{data.death_today}}
@@ -59,13 +59,11 @@
             </div>
 
             <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-5">
-              <div class="active-dashboard w-100 mx-auto text-center border">
+              <div class="active-dashboard dd-bx w-100 mx-auto text-center border">
                 <p class="case">Active Cases</p>
                 <p class="num active" style="margin-top:-25px">
-                  {% if data.active == None %}
-                  {{ 0 }}
-                  {% elif data.active >= 1000%}
-                  {{ "{:,}".format(data.active) }}
+                  {% if data.active == '' %}
+                  {{ 0 }}                  
                   {% else %}                
                   {{ data.active }}
                   {% endif %}
@@ -74,29 +72,31 @@
             </div>     
 
             <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-5">
-              <div class="recover-dashboard w-100 mx-auto text-center border">
-                <p class="case">Recovered Cases</p>
+              <div class="recover-dashboard dd-bx w-100 mx-auto text-center border">
+                <p class="case">New Recovered</p>
                 <p class="num recover" style="margin-top:-25px">
-                  0
+                  {% if data.recover_today == '' %}
+                  {{ 0 }}                  
+                  {% else %}                
+                  {{ data.recover_today }}
+                  {% endif %}
                 </p>
               </div>
             </div>              
 
           </div>
           <div class="time">
-            <small class="text-muted">Updated at {{ data.day }} .</small>
+            <small class="text-muted">Updated at {{ data.time }} .</small>
           </div>
 
           <p class="brand-font pt-4 pb-1" style="border-bottom:1px solid #cccccc">Overall</p>
           <div class="row pt-2"> 
             <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-5">
-              <div class="total-dashboard w-100 mx-auto text-center border">
+              <div class="total-dashboard dd-bx w-100 mx-auto text-center border">
                 <p class="case">Total Cases</p>
                 <p class="num total text-muted" style="margin-top:-25px">
-                  {% if data.total == None %}
-                  {{ 0 }}
-                  {% elif data.total >= 1000%}
-                  {{ "{:,}".format(data.total) }}
+                  {% if data.total == '' %}
+                  {{ 0 }}                  
                   {% else %}                
                   {{ data.total }}
                   {% endif %}                  
@@ -105,13 +105,11 @@
             </div>
 
             <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-5">
-              <div class="critical-dashboard w-100 mx-auto text-center border">
+              <div class="critical-dashboard dd-bx w-100 mx-auto text-center border">
                 <p class="case">Critical Cases</p>
                 <p class="num critical" style="margin-top:-25px">
-                  {% if data.critical == None %}
-                  {{ 0 }}
-                  {% elif data.critical >= 1000%}
-                  {{ "{:,}".format(data.critical) }}
+                  {% if data.critical == '' %}
+                  {{ 0 }}                  
                   {% else %}                
                   {{ data.critical }}
                   {% endif %}
@@ -120,13 +118,11 @@
             </div>     
 
             <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-5">
-              <div class="recover-dashboard w-100 mx-auto text-center border">
+              <div class="recover-dashboard dd-bx w-100 mx-auto text-center border">
                 <p class="case">Deaths</p>
                 <p class="num death" style="margin-top:-25px">
-                  {% if data.death_total == None %}
-                  {{ 0 }}
-                  {% elif data.death_total >= 1000%}
-                  {{ "{:,}".format(data.death_total) }}
+                  {% if data.death_total == '' %}
+                  {{ 0 }}                  
                   {% else %}                
                   {{ data.death_total }}
                   {% endif %}                  
@@ -135,13 +131,11 @@
             </div>
 
             <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-5">
-              <div class="death-dashboard w-100 mx-auto text-center border">
-                <p class="case">Recovered</p>
+              <div class="death-dashboard dd-bx w-100 mx-auto text-center border">
+                <p class="case">Total Recovered</p>
                 <p class="num recover" style="margin-top:-25px">
-                  {% if data.recover == None %}
-                  {{ 0 }}
-                  {% elif data.recover >= 1000%}
-                  {{ "{:,}".format(data.recover) }}
+                  {% if data.recover == '' %}
+                  {{ 0 }}                  
                   {% else %}                
                   {{ data.recover }}
                   {% endif %}
@@ -150,13 +144,11 @@
             </div>
           
             <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-5">
-              <div class="total-dashboard w-100 mx-auto text-center border">
+              <div class="total-dashboard dd-bx w-100 mx-auto text-center border">
                 <p class="case">Tested Cases</p>
                 <p class="num tested" style="margin-top:-25px">
-                  {% if data.total_test == None %}
-                  {{ 0 }}
-                  {% elif data.total_test >= 1000%}
-                  {{ "{:,}".format(data.total_test) }}
+                  {% if data.total_test == '' %}
+                  {{ 0 }}                  
                   {% else %}                
                   {{ data.total_test }}
                   {% endif %}                  

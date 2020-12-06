@@ -12,7 +12,7 @@
           <div class="col-12 col-md-8 col-lg-8">
             <div class="row">
               <div class="col-12 col-sm-12 col-md-12 col-lg-8 mb-5">
-                <div class="population-dashboard w-100 mr-auto text-center border">
+                <div class="population-dashboard dd-bx w-100 mr-auto text-center border">
                   <p class="case text-left pl-3">World Population</p>
                   <p class="f-fit num population text-left pl-3" style="margin-top:-25px">  
                     {{ "{:,}".format(7794798739) }}
@@ -21,7 +21,7 @@
               </div>
 
               <div class="col-12 col-sm-12 col-md-12 col-lg-4 mb-5">
-              <div class="active-dashboard w-100 mx-auto text-center border">
+              <div class="active-dashboard dd-bx w-100 mx-auto text-center border">
                 <p class="case">Active Cases</p>
                 <p class="f-fit num active" style="margin-top:-25px">
                   {{ data.active }}
@@ -30,7 +30,7 @@
             </div>     
 
               <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-5">
-                <div class="total-dashboard w-100 mx-auto text-center border">
+                <div class="total-dashboard dd-bx w-100 mx-auto text-center border">
                   <p class="case">Total Cases</p>
                   <p class="f-fit num total" style="margin-top:-25px"> 
                     {{ data.total_case }}               
@@ -38,7 +38,7 @@
                 </div>
               </div>
               <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-5">
-                <div class="recover-dashboard w-100 mx-auto text-center border">
+                <div class="recover-dashboard dd-bx w-100 mx-auto text-center border">
                   <p class="case">Total Recover</p>
                   <p class="f-fit num recover" style="margin-top:-25px">     
                     {{ data.total_recover }}      
@@ -46,7 +46,7 @@
                 </div>
               </div>
               <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-5">
-                <div class="death-dashboard w-100 mx-auto text-center border">
+                <div class="death-dashboard dd-bx w-100 mx-auto text-center border">
                   <p class="case">Total Deaths</p>
                   <p class="f-fit num death" style="margin-top:-25px">    {{ data.total_death }}               
                   </p>
@@ -63,7 +63,7 @@
           <p class="brand-font pt-4 pb-1" style="border-bottom:1px solid #cccccc">Today <span style="float:right"><img src="{{ url_for('static',filename='live.gif')}}" alt="" style="width:65px;height:40px"></span></p>
           <div class="row pt-2">            
             <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-5">
-              <div class="new-dashboard w-100 mx-auto text-center border">
+              <div class="new-dashboard dd-bx w-100 mx-auto text-center border">
                 <p class="case" style="">New Cases</p>
                 <p class="num new" style="margin-top:-25px">
                   {{ data.new_case }}
@@ -72,7 +72,7 @@
             </div>
 
             <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-5">
-              <div class="death-dashboard w-100 mx-auto text-center border">
+              <div class="death-dashboard dd-bx w-100 mx-auto text-center border">
                 <p class="case">Deaths</p>
                 <p class="num death" style="margin-top:-25px">              {{ data.new_death }}
                 </p>
@@ -80,7 +80,7 @@
             </div>
             
             <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-5">
-              <div class="critical-dashboard w-100 mx-auto text-center border">
+              <div class="critical-dashboard dd-bx w-100 mx-auto text-center border">
                 <p class="case">Critical Cases</p>
                 <p class="num critical" style="margin-top:-25px">
                   {{ data.critical }}
@@ -89,7 +89,7 @@
             </div>     
 
             <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-5">
-              <div class="recover-dashboard w-100 mx-auto text-center border">
+              <div class="recover-dashboard dd-bx w-100 mx-auto text-center border">
                 <p class="case">Recovered Cases</p>
                 <p class="num recover" style="margin-top:-25px">
                   {{ data.new_recover }}
